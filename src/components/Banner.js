@@ -5,6 +5,6 @@ import MyImages from '../images/banner-0.jpg';
 
 export const Banner = () => {
   return (
-    <Image src={MyImages} fluid style={{  minHeight:"170px" }} />
+    <Image src={MyImages} fluid style={{  minHeight:"180px" }} />
   )
 }
