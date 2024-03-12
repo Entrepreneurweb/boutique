@@ -7,6 +7,9 @@ import AddProductForm from './components/Addprod';
 import ProductsList from './components/Afficherprod';
 import { Ui } from './components/Ui';
 import Supprimer from './components/deleteprod';
+import { Administration } from './components/Administration';
+import Formulaire from './components/Login';
+
 
 
 function App() {
@@ -15,10 +18,10 @@ function App() {
        <Router>
         <Switch>
           <Route path="/" exact component={Ui} />
-         //
          
-          <Route path="/admin" component={AddProductForm} />
-          <Route path="/supprimer" component={Supprimer} />
+         
+          <Route path="/admin" exact component={Formulaire} />
+          
         </Switch>
       </Router>
      

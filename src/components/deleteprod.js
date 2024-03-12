@@ -66,11 +66,11 @@ alert(" supprimer");
           <Col key={index} xs={12} sm={6} md={4} lg={3} onClick={(e) => pupup(e, product)} > {/* Utilisez les classes de grille Bootstrap pour contrôler la largeur des colonnes */}
             <Card style={{ marginBottom: '20px' }} key={index} >
               
-              <Card.Img variant="top" src={product.images.im1} alt="Product" />
+              <Card.Img variant="top" src={product.images.im1} alt="Product"   style={{ width: '100%', height: '200px', objectFit:"cover" }}/>
               <Card.Body>
                 <Card.Title>{product.nom}</Card.Title>
                 <Card.Text>
-                  Prix: ${product.prix} {/* Formatage du prix en dollars */}
+                  Prix: {product.prix} FCFA {/* Formatage du prix en fcfa */}
                 </Card.Text>
               </Card.Body>
               <Button  onClick={()=>{

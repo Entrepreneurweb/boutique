@@ -1,0 +1,24 @@
+.banner-container {
+    background-image: url('../../images/banner-0.jpg');
+    background-size: cover;
+    background-position: center;
+    min-height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-align: center;
+  }
+  
+  .banner-content {
+    width: 100%;
+    padding: 20px;
+  }
+  
+  /* Média query pour les écrans de bureau */
+  @media (min-width: 768px) {
+    .banner-container {
+      min-height: 400px; /* Ajustez la hauteur en fonction de vos besoins pour les écrans de bureau */
+    }
+  }
+  

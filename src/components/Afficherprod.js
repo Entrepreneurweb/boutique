@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { getDatabase, ref, get } from "firebase/database";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import app from '../config/FirebaseConfig';
 import Carousel from 'react-bootstrap/Carousel';
-import { Card, Row, Col, Modal, Button } from 'react-bootstrap';
+import { Card, Col, Modal, Button } from 'react-bootstrap';
+import { Container, Row } from 'react-bootstrap';
 //import CustomNavbar from './composants/Navtopbar';
+import { Contexttri } from './TriContext';
 
 
 
@@ -14,6 +16,8 @@ const ProductsList = () => {
   const [selectedProduct, setSelectedProduct] = useState(null);  
   const[triarg, settriarg]=useState("");
   const whatsappNumber = '+905539423359';
+  const{argument, update}=useContext(Contexttri);
+ //settriarg(argument);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -59,26 +63,27 @@ const ProductsList = () => {
         {/* <CustomNavbar  onClick={(arg) => trier(arg)} /> */}
       
      
-      <div className="container mt-5">
-     
-      <Row>
-        {products
-          .sort(() => Math.random() - 0/*0.5*/) // Mélanger le tableau des produits
-          .filter(product => !triarg || product.type === triarg)
-          .map((product, index) => (
-            <Col key={index} xs={12} sm={6} md={4} lg={3} onClick={(e) => pupup(e, product)}>
-              <Card style={{ marginBottom: '20px' }} key={index}>
-                <Card.Img variant="top" src={product.images.im1} alt="Product" />
-                <Card.Body>
-                  <Card.Title>{product.nom}</Card.Title>
-                  <Card.Text>
-                    {product.prix} FCFA
-                  </Card.Text>
-                </Card.Body>
-              </Card>
-            </Col>
-          ))}
-      </Row>
+      <div className="container mt-3">
+      <Container style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: '20px' }}>
+      {products
+        .filter(product => !argument || product.type === argument)
+        .map((product, index) => (
+          <Col key={index} style={{ marginBottom: '2px' }}>
+            <Card onClick={(e) => pupup(e, product)} style={{ borderRadius: '20px' }}>
+              <Card.Img 
+                variant="top" 
+                src={product.images.im1} 
+                alt="Product" 
+                style={{ width: '100%', height: '150px', objectFit: "cover", borderTopLeftRadius: '20px', borderTopRightRadius: '20px' }}
+              />
+              <Card.Body>
+                {/* <Card.Title style={{ fontSize: '1rem' }}>{product.nom}</Card.Title> */}
+                <Card.Text style={{ fontSize: '0.9rem' }}>{product.prix} FCFA</Card.Text>
+              </Card.Body>
+            </Card>
+          </Col>
+        ))}
+    </Container>
 
 
       <Modal show={showPopup} onHide={handlePopupClose}>
@@ -91,13 +96,13 @@ const ProductsList = () => {
              
             
 
-<Carousel>
-  <Carousel.Item interval={1000}>
+<Carousel pause={true} interval={null}>
+  <Carousel.Item >
     {selectedProduct && selectedProduct.images && selectedProduct.images.im1 && (
       <img src={selectedProduct.images.im1} alt={selectedProduct.nom} style={{ width: '100%' }} />
     )}
   </Carousel.Item>
-  <Carousel.Item interval={500}>
+  <Carousel.Item >
     {selectedProduct && selectedProduct.images && selectedProduct.images.im2 && (
       <img src={selectedProduct.images.im2} alt={selectedProduct.nom} style={{ width: '100%' }} />
     )}
